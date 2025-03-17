@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAVERSE Intro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: radial-gradient(circle, #1a002a, #000);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            position: relative;
+        }
+        
+        .intro-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+        }
+        
+        .galaxy-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at top, rgba(75, 0, 130, 0.4) 0%, transparent 70%),
+                radial-gradient(ellipse at bottom, rgba(138, 43, 226, 0.4) 0%, transparent 70%);
+            animation: rotateGalaxy 60s infinite linear;
+        }
+        
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s infinite alternate;
+        }
+        
+        .nebula {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(173, 83, 137, 0.4), rgba(0, 0, 0, 0) 50%),
+                radial-gradient(circle at 70% 60%, rgba(83, 173, 137, 0.4), rgba(0, 0, 0, 0) 50%);
+            animation: pulse 6s infinite alternate;
+            transition: background 1s ease;
+        }
+        
+        .cosmic-wave {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.7), rgba(0, 0, 0, 0));
+            border-radius: 50%;
+            filter: blur(50px);
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.7;
+            transition: transform 0.5s ease-out, filter 0.5s ease-out, opacity 0.5s ease-out;
+            z-index: 1;
+        }
+        
+        .galaxy-spiral {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='100%25' gradientTransform='rotate(240)'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='0.1'/%3E%3Cstop offset='1' stop-color='%23ff00ff' stop-opacity='0.3'/%3E%3C/linearGradient%3E%3Cpattern patternUnits='userSpaceOnUse' id='b' width='540' height='450' x='0' y='0' viewBox='0 0 1080 900'%3E%3Cg fill-opacity='0.1'%3E%3Cpolygon fill='%23444' points='90 150 0 300 180 300'/%3E%3Cpolygon points='90 150 180 0 0 0'/%3E%3Cpolygon fill='%23AAA' points='270 150 360 0 180 0'/%3E%3Cpolygon fill='%23DDD' points='450 150 360 300 540 300'/%3E%3Cpolygon fill='%23999' points='450 150 540 0 360 0'/%3E%3Cpolygon points='630 150 540 300 720 300'/%3E%3Cpolygon fill='%23DDD' points='630 150 720 0 540 0'/%3E%3Cpolygon fill='%23444' points='810 150 720 300 900 300'/%3E%3Cpolygon fill='%23FFF' points='810 150 900 0 720 0'/%3E%3Cpolygon fill='%23DDD' points='990 150 900 300 1080 300'/%3E%3Cpolygon fill='%23444' points='990 150 1080 0 900 0'/%3E%3Cpolygon fill='%23DDD' points='90 450 0 600 180 600'/%3E%3Cpolygon points='90 450 180 300 0 300'/%3E%3Cpolygon fill='%23666' points='270 450 180 600 360 600'/%3E%3Cpolygon fill='%23AAA' points='270 450 360 300 180 300'/%3E%3Cpolygon fill='%23DDD' points='450 450 360 600 540 600'/%3E%3Cpolygon fill='%23999' points='450 450 540 300 360 300'/%3E%3Cpolygon fill='%23999' points='630 450 540 600 720 600'/%3E%3Cpolygon fill='%23FFF' points='630 450 720 300 540 300'/%3E%3Cpolygon points='810 450 720 600 900 600'/%3E%3Cpolygon fill='%23DDD' points='810 450 900 300 720 300'/%3E%3Cpolygon fill='%23AAA' points='990 450 900 600 1080 600'/%3E%3Cpolygon fill='%23444' points='990 450 1080 300 900 300'/%3E%3Cpolygon fill='%23222' points='90 750 0 900 180 900'/%3E%3Cpolygon points='270 750 180 900 360 900'/%3E%3Cpolygon fill='%23DDD' points='270 750 360 600 180 600'/%3E%3Cpolygon points='450 750 540 600 360 600'/%3E%3Cpolygon points='630 750 540 900 720 900'/%3E%3Cpolygon fill='%23444' points='630 750 720 600 540 600'/%3E%3Cpolygon fill='%23AAA' points='810 750 720 900 900 900'/%3E%3Cpolygon fill='%23666' points='810 750 900 600 720 600'/%3E%3Cpolygon fill='%23999' points='990 750 900 900 1080 900'/%3E%3Cpolygon fill='%23999' points='180 0 90 150 270 150'/%3E%3Cpolygon fill='%23444' points='360 0 270 150 450 150'/%3E%3Cpolygon fill='%23FFF' points='540 0 450 150 630 150'/%3E%3Cpolygon points='900 0 810 150 990 150'/%3E%3Cpolygon fill='%23222' points='0 300 -90 450 90 450'/%3E%3Cpolygon fill='%23FFF' points='0 300 90 150 -90 150'/%3E%3Cpolygon fill='%23FFF' points='180 300 90 450 270 450'/%3E%3Cpolygon fill='%23666' points='180 300 270 150 90 150'/%3E%3Cpolygon fill='%23222' points='360 300 270 450 450 450'/%3E%3Cpolygon fill='%23FFF' points='360 300 450 150 270 150'/%3E%3Cpolygon fill='%23444' points='540 300 450 450 630 450'/%3E%3Cpolygon fill='%23222' points='540 300 630 150 450 150'/%3E%3Cpolygon fill='%23AAA' points='720 300 630 450 810 450'/%3E%3Cpolygon fill='%23666' points='720 300 810 150 630 150'/%3E%3Cpolygon fill='%23FFF' points='900 300 810 450 990 450'/%3E%3Cpolygon fill='%23999' points='900 300 990 150 810 150'/%3E%3Cpolygon points='0 600 -90 750 90 750'/%3E%3Cpolygon fill='%23666' points='0 600 90 450 -90 450'/%3E%3Cpolygon fill='%23AAA' points='180 600 90 750 270 750'/%3E%3Cpolygon fill='%23444' points='180 600 270 450 90 450'/%3E%3Cpolygon fill='%23444' points='360 600 270 750 450 750'/%3E%3Cpolygon fill='%23999' points='360 600 450 450 270 450'/%3E%3Cpolygon fill='%23666' points='540 600 630 450 450 450'/%3E%3Cpolygon fill='%23222' points='720 600 630 750 810 750'/%3E%3Cpolygon fill='%23FFF' points='900 600 810 750 990 750'/%3E%3Cpolygon fill='%23222' points='900 600 990 450 810 450'/%3E%3Cpolygon fill='%23DDD' points='0 900 90 750 -90 750'/%3E%3Cpolygon fill='%23444' points='180 900 270 750 90 750'/%3E%3Cpolygon fill='%23FFF' points='360 900 450 750 270 750'/%3E%3Cpolygon fill='%23AAA' points='540 900 630 750 450 750'/%3E%3Cpolygon fill='%23FFF' points='720 900 810 750 630 750'/%3E%3Cpolygon fill='%23222' points='900 900 990 750 810 750'/%3E%3Cpolygon fill='%23222' points='1080 300 990 450 1170 450'/%3E%3Cpolygon fill='%23FFF' points='1080 300 1170 150 990 150'/%3E%3Cpolygon points='1080 600 990 750 1170 750'/%3E%3Cpolygon fill='%23666' points='1080 600 1170 450 990 450'/%3E%3Cpolygon fill='%23DDD' points='1080 900 1170 750 990 750'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='100%25' height='100%25'/%3E%3Crect x='0' y='0' fill='url(%23b)' width='100%25' height='100%25'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            animation: rotateGalaxy 320s infinite linear reverse;
+        }
+        
+        .asteroid {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23888' d='M50,5c-4,0-8,10-15,15S5,30,5,50s15,25,30,30s15,15,15,15s10-10,25-15s20-15,20-35s-10-25-25-30S54,5,50,5z'/%3E%3Cpath fill='%23666' d='M30,25c0,0,5,5,5,10s-5,10-5,10s-5-5-5-10S30,25,30,25z'/%3E%3Cpath fill='%23666' d='M70,35c0,0,5,5,5,10s-5,10-5,10s-5-5-5-10S70,35,70,35z'/%3E%3Cpath fill='%23555' d='M40,60c0,0,5,5,5,10s-5,10-5,10s-5-5-5-10S40,60,40,60z'/%3E%3C/svg%3E");
+            background-size: cover;
+            opacity: 0.8;
+            transition: all 5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: floatParticle 10s linear infinite;
+        }
+        
+        .intro-text {
+            font-size: 3rem;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.5);
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 3s ease-in-out forwards, pulseGlow 2s infinite alternate;
+        }
+        
+        .description {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-top: 10px;
+            z-index: 2;
+            text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out 1.5s forwards;
+        }
+        
+        .enter-btn {
+            background: #ff00ff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 50px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out 3s forwards;
+            transition: transform 0.3s, background-color 0.3s;
+            overflow: hidden;
+        }
+        
+        .enter-btn:hover {
+            transform: scale(1.1);
+            background: #ff33ff;
+        }
+
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.6s linear;
+            pointer-events: none;
+        }
+
+        .sound-wave {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        .sound-bar {
+            width: 5px;
+            height: 100%;
+            background: #ff00ff;
+            animation: soundWave 1s infinite alternate;
+        }
+
+        .sound-bar:nth-child(2) { animation-delay: 0.2s; }
+        .sound-bar:nth-child(3) { animation-delay: 0.4s; }
+        .sound-bar:nth-child(4) { animation-delay: 0.6s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes twinkle {
+            from { opacity: 0.6; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            from { opacity: 0.3; }
+            to { opacity: 0.6; }
+        }
+        
+        @keyframes rotateGalaxy {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseGlow {
+            from { text-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.5); }
+            to { text-shadow: 0 0 15px rgba(255, 0, 255, 1), 0 0 30px rgba(255, 0, 255, 0.8); }
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0); opacity: 0.7; }
+            100% { transform: translate(-100vw, 100vh); opacity: 0; }
+        }
+
+        @keyframes rippleEffect {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        @keyframes soundWave {
+            from { height: 20%; }
+            to { height: 100%; }
+        }
+        
+        @media (max-width: 768px) {
+            .intro-text { font-size: 2rem; }
+            .description { font-size: 1rem; max-width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-container" id="intro">
+        <div class="galaxy-background"></div>
+        <div class="stars"></div>
+        <div class="nebula" id="nebula"></div>
+        <div class="cosmic-wave" id="cosmicWave"></div>
+        <div class="galaxy-spiral"></div>
+        
+        <h1 class="intro-text">Welcome to AURAVERSE</h1>
+        <p class="description">Embark on a cosmic journey beyond imagination.</p>
+        <button class="enter-btn" id="enterBtn" onclick="enterAuraverse()">Enter AURAVERSE</button>
+        <div class="sound-wave" id="soundWave">
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+        </div>
+    </div>
+    <audio id="auraverseSong" preload="auto">
+        <source src="M83 - midnight city' ( s l o w e d ).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> 
+    <script>
+        const introContainer = document.getElementById('intro');
+        const cosmicWave = document.getElementById('cosmicWave');
+        const enterBtn = document.getElementById('enterBtn');
+        const nebula = document.getElementById('nebula');
+        const auraverseSong = document.getElementById('auraverseSong');
+        const soundWave = document.getElementById('soundWave');
+
+        function enterAuraverse() {
+            introContainer.style.opacity = '0';
+            setTimeout(() => {
+                window.location.href = 'homepage.html';
+            }, 100000); // Reduced delay for smoother transition
+
+            auraverseSong.volume = 0;
+            auraverseSong.play().then(() => {
+                fadeInAudio();
+                soundWave.style.display = 'flex';
+            }).catch(error => console.error("Error playing audio:", error));
+        }
+
+        function fadeInAudio() {
+            let volume = 0;
+            const fadeInterval = setInterval(() => {
+                volume += 0.05;
+                auraverseSong.volume = Math.min(volume, 1);
+                if (volume >= 1) clearInterval(fadeInterval);
+            }, 100);
+        }
+
+        function createAsteroid() {
+            const asteroid = document.createElement('div');
+            asteroid.classList.add('asteroid');
+            const size = Math.random() * 60 + 20;
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * window.innerHeight;
+            const endX = window.innerWidth / 2;
+            const endY = window.innerHeight / 2;
+            const rotation = Math.random() * 360;
+            
+            asteroid.style.width = `${size}px`;
+            asteroid.style.height = `${size}px`;
+            asteroid.style.left = `${startX}px`;
+            asteroid.style.top = `${startY}px`;
+            asteroid.style.transform = `rotate(${rotation}deg) scale(0.1)`;
+            
+            introContainer.appendChild(asteroid);
+            
+            setTimeout(() => {
+                asteroid.style.left = `${endX}px`;
+                asteroid.style.top = `${endY}px`;
+                asteroid.style.transform = `rotate(${rotation + 360}deg) scale(1.5)`;
+                asteroid.style.opacity = "0";
+            }, 50);
+            
+            setTimeout(() => asteroid.remove(), 5000);
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const startX = Math.random() * window.innerWidth;
+            const startY = -10;
+            particle.style.left = `${startX}px`;
+            particle.style.top = `${startY}px`;
+            introContainer.appendChild(particle);
+            setTimeout(() => particle.remove(), 10000);
+        }
+
+        function addRipple(e) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            const rect = enterBtn.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+            ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+            enterBtn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        setInterval(createAsteroid, 800);
+        setInterval(createParticle, 200);
+
+        document.addEventListener('mousemove', (e) => {
+            const buttonRect = enterBtn.getBoundingClientRect();
+            const isOverButton = 
+                e.clientX >= buttonRect.left && 
+                e.clientX <= buttonRect.right && 
+                e.clientY >= buttonRect.top && 
+                e.clientY <= buttonRect.bottom;
+            
+            if (isOverButton) {
+                cosmicWave.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cosmicWave.style.filter = 'blur(30px) hue-rotate(90deg)';
+                cosmicWave.style.opacity = '0.9';
+            } else {
+                cosmicWave.style.transform = 'translate(-50%, -50%) scale(1)';
+                cosmicWave.style.filter = 'blur(50px)';
+                cosmicWave.style.opacity = '0.7';
+            }
+
+            const xPercent = (e.clientX / window.innerWidth) * 100;
+            const yPercent = (e.clientY / window.innerHeight) * 100;
+            nebula.style.background = `
+                radial-gradient(circle at ${xPercent}% ${yPercent}%, rgba(173, 83, 137, 0.4), rgba(0, 0, 0, 0) 50%),
+                radial-gradient(circle at ${100 - xPercent}% ${100 - yPercent}%, rgba(83, 173, 137, 0.4), rgba(0, 0, 0, 0) 50%)
+            `;
+        });
+
+        enterBtn.addEventListener('click', addRipple);
+
+        soundWave.style.display = 'none';
+    </script>
+</body>
+</html>
